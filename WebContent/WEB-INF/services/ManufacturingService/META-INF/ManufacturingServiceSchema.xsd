@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/ManufacturingServiceSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.example.org/ManufacturingServiceSchema">
+    <element name="canCreateProductReq" type="int"/>
+    <element name="canCreateProductResponse" type="boolean"/>
+    <element name="createProductRequest" type="tns:InventoryEntry"/>
+    <complexType name="InventoryEntry">
+        <sequence>
+            <element name="productSpecId" type="int"/>
+            <element name="wareHouseId" type="int"/>
+            <element name="quantity" type="int"/>
+            <element name="customerid" type="string"/>
+        </sequence>
+    </complexType>
+    <element name="createProductResponse" type="tns:ProductResponse"/>
+    <element name="addInventoryEntryReq" type="tns:InventoryEntry"/>
+    <element name="addInventoryEntryResponse" type="string"/>
+    <complexType name="ProductResponse">
+        <sequence>
+            <element name="isCreated" type="boolean"/>
+            <element name="customerid" type="string"/>
+        </sequence>
+    </complexType>
+</schema>

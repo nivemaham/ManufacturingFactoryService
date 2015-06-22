@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ManufacturingService" targetNamespace="http://service.manufacturing.autoinc.com/ManufacturingService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.manufacturing.autoinc.com/ManufacturingService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://service.manufacturing.autoinc.com/ManufacturingService/">
+      <xsd:element name="createProducts">
+        <xsd:complexType>
+          <xsd:sequence>
+
+          	<xsd:element name="productSpecid" type="xsd:int"/>
+          	<xsd:element name="warehouseid" type="xsd:int"/>
+          	<xsd:element name="quantity" type="xsd:int"/>
+
+          	<xsd:element name="customerid" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createProductsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="isCreated" type="xsd:boolean"/>
+          	<xsd:element name="customerid" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="createProductsResponse">
+    <wsdl:part name="parameters" element="tns:createProductsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createProductsRequest">
+    <wsdl:part name="parameters" element="tns:createProducts">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ManufacturingService">
+    <wsdl:operation name="createProducts">
+      <wsdl:input message="tns:createProductsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:createProductsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManufacturingServiceSOAP" type="tns:ManufacturingService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createProducts">
+      <soap:operation soapAction="http://service.manufacturing.autoinc.com/ManufacturingService/createProducts"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManufacturingService">
+    <wsdl:port name="ManufacturingServiceSOAP" binding="tns:ManufacturingServiceSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

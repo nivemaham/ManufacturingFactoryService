@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ManufacturingFactoryService" targetNamespace="http://www.example.org/ManufacturingFactoryService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/ManufacturingFactoryService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/ManufacturingFactoryService/">
+      <xsd:element name="canCreateProduct">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="canCreateProductResponse" type="xsd:boolean">
+
+      </xsd:element>
+      <xsd:element name="productId" type="xsd:integer"/>
+      
+            <xsd:element name="in" type="xsd:string"/>
+            <xsd:element name="out" type="xsd:string"/>
+            <xsd:element name="createProductsInput" type="tns:CreateProductsInputs">
+            </xsd:element>
+            <xsd:element name="createProductsOutput" type="xsd:boolean">
+            </xsd:element>
+            
+            <xsd:complexType name="CreateProductsInputs">
+            	<xsd:sequence>
+            		<xsd:element name="productSpecId" type="xsd:int"/>
+            		<xsd:element name="wareHouseId" type="xsd:int"/>
+            		<xsd:element name="quantity" type="xsd:int"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="in1" type="xsd:string"/>
+            <xsd:element name="out1" type="xsd:string"/>
+            <xsd:element name="inventory" type="tns:InventoryEntry"/>
+            
+            <xsd:complexType name="InventoryEntry">
+            	<xsd:sequence>
+            		<xsd:element name="prodSpecId" type="xsd:int"/>
+            		<xsd:element name="wareHouseId" type="xsd:int"/>
+            		<xsd:element name="quantity" type="xsd:int"/>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="createInventoryOutput" type="xsd:boolean">
+            </xsd:element>
+            <xsd:element name="productSpecId" type="tns:InventoryEntry">
+            </xsd:element>
+            <xsd:element name="productCreated" type="xsd:boolean"/>
+            <xsd:element name="InventoryEntry" type="xsd:string"/>
+            <xsd:element name="inventoryinput" type="tns:InventoryEntry">
+            </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="addInventoryEntryRequest">
+    <wsdl:part name="addInventoryEntryRequest" element="tns:inventoryinput">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canCreateProductResponse">
+    <wsdl:part name="parameters" element="tns:canCreateProductResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addInventoryEntryResponse">
+    <wsdl:part name="addInventoryEntryResponse" element="tns:createInventoryOutput">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createProductsResponse">
+    <wsdl:part name="createProductsResponse" element="tns:productCreated">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createProductsRequest">
+    <wsdl:part name="createProductsRequest" element="tns:productSpecId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canCreateProductRequest">
+    <wsdl:part name="parameters" element="tns:productId">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ManufacturingFactoryService">
+    <wsdl:operation name="canCreateProduct">
+      <wsdl:input message="tns:canCreateProductRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:canCreateProductResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createProducts">
+      <wsdl:input message="tns:createProductsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:createProductsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addInventoryEntry">
+      <wsdl:input message="tns:addInventoryEntryRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:addInventoryEntryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManufacturingFactoryServiceSOAP" type="tns:ManufacturingFactoryService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="canCreateProduct">
+      <soap:operation soapAction="http://www.example.org/ManufacturingFactoryService/canCreateProduct"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createProducts">
+      <soap:operation soapAction="http://www.example.org/ManufacturingFactoryService/createProducts"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addInventoryEntry">
+      <soap:operation soapAction="http://www.example.org/ManufacturingFactoryService/addInventoryEntry"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManufacturingFactoryService">
+    <wsdl:port name="ManufacturingFactoryServiceSOAP" binding="tns:ManufacturingFactoryServiceSOAP">
+      <soap:address location="http://localhost:8080/ManufacturingFactoryService/services/ManufacturingFacService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
